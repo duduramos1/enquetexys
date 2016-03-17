@@ -1,0 +1,42 @@
+<?php
+
+namespace App\EnqueteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Pergunta
+ *
+ * @ORM\Table(name="pergunta", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_pergunta_enquete_idx", columns={"enquete"})})
+ * @ORM\Entity
+ */
+class Pergunta
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="no_pergunta", type="string", length=100, nullable=false)
+     */
+    private $noPergunta;
+
+    /**
+     * @var \Enquete
+     *
+     * @ORM\ManyToOne(targetEntity="Enquete")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="enquete", referencedColumnName="id")
+     * })
+     */
+    private $enquete;
+
+
+}
