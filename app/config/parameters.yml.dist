@@ -9,7 +9,14 @@ parameters:
     database_password: ~
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
-
+    sistema: ENQUETE
+    versao: 1.0.0
+    cor: defaut
+    post_max_size: 100M
+    homepage: app_enquete_enquete_index
+    auth_bundle: false
+    auth_ldap_server:
+    auth_ldap_port:
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
     mailer_user:       ~
