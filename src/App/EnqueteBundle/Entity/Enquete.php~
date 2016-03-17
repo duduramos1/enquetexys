@@ -24,9 +24,9 @@ class Enquete
     /**
      * @var string
      *
-     * @ORM\Column(name="no_titulo", type="string", length=45, nullable=false)
+     * @ORM\Column(name="no_enquete", type="string", length=50, nullable=false)
      */
-    private $noTitulo;
+    private $noEnquete;
 
 
 }

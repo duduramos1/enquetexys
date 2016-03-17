@@ -24,9 +24,9 @@ class Enquete
     /**
      * @var string
      *
-     * @ORM\Column(name="no_titulo", type="string", length=45, nullable=false)
+     * @ORM\Column(name="no_enquete", type="string", length=50, nullable=false)
      */
-    private $noTitulo;
+    private $noEnquete;
 
 
 
@@ -41,25 +41,25 @@ class Enquete
     }
 
     /**
-     * Set noTitulo
+     * Set noEnquete
      *
-     * @param string $noTitulo
+     * @param string $noEnquete
      * @return Enquete
      */
-    public function setNoTitulo($noTitulo)
+    public function setNoEnquete($noEnquete)
     {
-        $this->noTitulo = $noTitulo;
+        $this->noEnquete = $noEnquete;
 
         return $this;
     }
 
     /**
-     * Get noTitulo
+     * Get noEnquete
      *
      * @return string 
      */
-    public function getNoTitulo()
+    public function getNoEnquete()
     {
-        return $this->noTitulo;
+        return $this->noEnquete;
     }
 }

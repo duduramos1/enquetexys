@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Resposta
  *
- * @ORM\Table(name="resposta", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_resposta_pergunta1_idx", columns={"pergunta"})})
+ * @ORM\Table(name="resposta", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_resposta_opcao_resposta1_idx", columns={"opcao_resposta_id"})})
  * @ORM\Entity
  */
 class Resposta
@@ -22,21 +22,14 @@ class Resposta
     private $id;
 
     /**
-     * @var string
+     * @var \OpcaoResposta
      *
-     * @ORM\Column(name="no_resposta", type="string", length=100, nullable=false)
-     */
-    private $noResposta;
-
-    /**
-     * @var \Pergunta
-     *
-     * @ORM\ManyToOne(targetEntity="Pergunta")
+     * @ORM\ManyToOne(targetEntity="OpcaoResposta")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="pergunta", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="opcao_resposta_id", referencedColumnName="id")
      * })
      */
-    private $pergunta;
+    private $opcaoResposta;
 
 
 
@@ -51,48 +44,25 @@ class Resposta
     }
 
     /**
-     * Set noResposta
+     * Set opcaoResposta
      *
-     * @param string $noResposta
+     * @param \App\EnqueteBundle\Entity\OpcaoResposta $opcaoResposta
      * @return Resposta
      */
-    public function setNoResposta($noResposta)
+    public function setOpcaoResposta(\App\EnqueteBundle\Entity\OpcaoResposta $opcaoResposta = null)
     {
-        $this->noResposta = $noResposta;
+        $this->opcaoResposta = $opcaoResposta;
 
         return $this;
     }
 
     /**
-     * Get noResposta
+     * Get opcaoResposta
      *
-     * @return string 
+     * @return \App\EnqueteBundle\Entity\OpcaoResposta 
      */
-    public function getNoResposta()
+    public function getOpcaoResposta()
     {
-        return $this->noResposta;
-    }
-
-    /**
-     * Set pergunta
-     *
-     * @param \App\EnqueteBundle\Entity\Pergunta $pergunta
-     * @return Resposta
-     */
-    public function setPergunta(\App\EnqueteBundle\Entity\Pergunta $pergunta = null)
-    {
-        $this->pergunta = $pergunta;
-
-        return $this;
-    }
-
-    /**
-     * Get pergunta
-     *
-     * @return \App\EnqueteBundle\Entity\Pergunta 
-     */
-    public function getPergunta()
-    {
-        return $this->pergunta;
+        return $this->opcaoResposta;
     }
 }

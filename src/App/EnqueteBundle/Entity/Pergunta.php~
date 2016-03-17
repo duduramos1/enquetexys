@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Pergunta
  *
- * @ORM\Table(name="pergunta", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_pergunta_enquete_idx", columns={"enquete"})})
+ * @ORM\Table(name="pergunta", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_pergunta_enquete1_idx", columns={"enquete_id"})})
  * @ORM\Entity
  */
 class Pergunta
@@ -33,7 +33,7 @@ class Pergunta
      *
      * @ORM\ManyToOne(targetEntity="Enquete")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="enquete", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="enquete_id", referencedColumnName="id")
      * })
      */
     private $enquete;
