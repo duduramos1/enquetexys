@@ -1,0 +1,25 @@
+{
+  "name": "enquetexys",
+  "homepage": "https://github.com/duduramos1/enquetexys",
+  "authors": [
+    "Eduardo Ramos <eduardo.freitas@ctis.com.br>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
