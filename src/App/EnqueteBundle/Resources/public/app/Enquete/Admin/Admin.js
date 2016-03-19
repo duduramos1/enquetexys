@@ -14,6 +14,6 @@ angular.module('enqueteApp', ['ngRoute'])
 
     })
     .config(function($interpolateProvider) {
-        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+        $interpolateProvider.startSymbol('[[').endSymbol(']]');
     })
 ;
