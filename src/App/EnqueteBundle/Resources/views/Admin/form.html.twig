@@ -1,0 +1,72 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="row" ng-controller="AdminCreateController">
+        <div class="col-sm-9 col-md-10 col-lg-10 pull-right">
+
+            <form class="form-horizontal" role="form" novalidate name="formulario" ng-submit="submeter()">
+
+                <section class="panel panel-default" role="region">
+                    <header class="panel-heading">
+                        {% include 'EnqueteBundle:Admin/partials:btn.html.twig' %}
+                        <h4>Cadastrar Enquete</h4>
+                    </header>
+                    <article class="panel-body">
+                        <div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label required" for="login-ldap">Enquete</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="enquete" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label required" for="login-ldap">Pergunta</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="pergunta"
+                                               value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+
+                            {#<label class="col-sm-2 control-label required">Status</label>#}
+
+                            {#<div class="col-sm-10">#}
+                            {#<div class="radio radio-inline">#}
+                            {#<label>#}
+                            {#<input type="radio" value="A" name="stUsuario" tipoAcao="A"#}
+                            {#data-message="Confirma a ativação do registro?"><i></i>#}
+                            {#Ativo#}
+                            {#</label>#}
+
+                            {#<p class="help-block m-n" id="parsley-id-multiple-statusitens"></p>#}
+                            {#</div>#}
+
+                            {#<div class="radio radio-inline">#}
+                            {#<label>#}
+                            {#<input type="radio" value="A" name="stUsuario" tipoAcao="A"#}
+                            {#data-message="Confirma a ativação do registro?"><i></i>#}
+                            {#Ativo#}
+                            {#</label>#}
+
+                            {#<p class="help-block m-n" id="parsley-id-multiple-statusitens"></p>#}
+                            {#</div>#}
+                            {#</div>#}
+                        </div>
+
+                    </article>
+                    <footer class="panel-footer clearfix">
+                        {% include 'EnqueteBundle:Admin/partials:btn.html.twig' %}
+                    </footer>
+                </section>
+            </form>
+        </div>
+    </div>
+{% endblock %}

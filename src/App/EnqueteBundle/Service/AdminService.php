@@ -6,8 +6,8 @@ use \JMS\DiExtraBundle\Annotation as DI;
 use \App\EnqueteBundle\Service\ApoioService\AbstractService as AbstractService;
 
 /**
- * @DI\Service("enquete.service")
+ * @DI\Service("admin.service")
  ******************************************************/
-class EntidadeService extends AbstractService
+class AdminService extends AbstractService
 {
 }

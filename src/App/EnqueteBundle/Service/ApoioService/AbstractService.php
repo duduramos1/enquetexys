@@ -1,5 +1,5 @@
 <?php
-namespace App\EnqueteBundle\Service;
+namespace App\EnqueteBundle\Service\ApoioService;
 
 use \Doctrine\ORM\EntityManager;
 use \JMS\DiExtraBundle\Annotation as DI;

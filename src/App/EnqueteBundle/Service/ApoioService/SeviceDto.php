@@ -1,5 +1,5 @@
 <?php
-namespace App\EnqueteBundle\Service;
+namespace App\EnqueteBundle\Service\ApoioService;
 
 use \JMS\DiExtraBundle\Annotation as DI;
 

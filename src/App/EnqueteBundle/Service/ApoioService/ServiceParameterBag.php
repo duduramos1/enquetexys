@@ -1,5 +1,5 @@
 <?php
-namespace App\EnqueteBundle\Service;
+namespace App\EnqueteBundle\Service\ApoioService;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
 
