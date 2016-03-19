@@ -3,6 +3,7 @@
 namespace App\EnqueteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Enquete
@@ -28,7 +29,12 @@ class Enquete
      */
     private $noEnquete;
 
-
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="App\EnqueteBundle\Entity\Pergunta", mappedBy="enquete")
+     */
+    private $pergunta;
 
     /**
      * Get id
@@ -62,4 +68,56 @@ class Enquete
     {
         return $this->noEnquete;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPergunta()
+    {
+        return $this->pergunta;
+    }
+
+    /**
+     * @param ArrayCollection $pergunta
+     * @innerEntity \App\EnqueteBundle\Entity\Pergunta
+     */
+    public function setPergunta(ArrayCollection $pergunta)
+    {
+        $this->pergunta = $pergunta;
+    }
+
+    /**
+     * Add Pergunta
+     *
+     * @param \App\EnqueteBundle\Entity\Pergunta $pergunta
+     * @return Enquete
+     */
+    public function addPergunta(\App\EnqueteBundle\Entity\Pergunta $pergunta = null)
+    {
+        if (!$this->pergunta) {
+            $this->pergunta = new ArrayCollection();
+        }
+
+        $this->pergunta->add($pergunta);
+
+        return $this;
+    }
+
+    /**
+     * Remove pergunta
+     *
+     * @param \App\EnqueteBundle\Entity\Pergunta $pergunta
+     * @return Enquete
+     */
+    public function removePergunta(\App\EnqueteBundle\Entity\Pergunta $pergunta)
+    {
+        if (!$this->pergunta->contains($pergunta)) {
+            return;
+        }
+
+        $this->pergunta->removeElement($pergunta);
+
+        $pergunta->setIdAvaliacao(null);
+    }
+
 }

@@ -38,7 +38,12 @@ class Pergunta
      */
     private $enquete;
 
-
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="App\EnqueteBundle\Entity\OpcaoResposta", mappedBy="pergunta")
+     */
+    private $opcaoResposta;
 
     /**
      * Get id
@@ -95,4 +100,56 @@ class Pergunta
     {
         return $this->enquete;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOpcaoResposta()
+    {
+        return $this->opcaoResposta;
+    }
+
+    /**
+     * @param ArrayCollection $opcaoResposta
+     * @innerEntity \App\EnqueteBundle\Entity\OpcaoResposta
+     */
+    public function setOpcaoResposta(ArrayCollection $opcaoResposta)
+    {
+        $this->opcaoResposta = $opcaoResposta;
+    }
+
+    /**
+     * Add OpcaoResposta
+     *
+     * @param \App\EnqueteBundle\Entity\OpcaoResposta $opcaoResposta
+     * @return Pergunta
+     */
+    public function addOpcaoResposta(\App\EnqueteBundle\Entity\OpcaoResposta $opcaoResposta = null)
+    {
+        if (!$this->opcaoResposta) {
+            $this->opcaoResposta = new ArrayCollection();
+        }
+
+        $this->opcaoResposta->add($opcaoResposta);
+
+        return $this;
+    }
+
+    /**
+     * Remove opcaoResposta
+     *
+     * @param \App\EnqueteBundle\Entity\OpcaoResposta $opcaoResposta
+     * @return Pergunta
+     */
+    public function removeOpcaoResposta(\App\EnqueteBundle\Entity\OpcaoResposta $opcaoResposta)
+    {
+        if (!$this->opcaoResposta->contains($opcaoResposta)) {
+            return;
+        }
+
+        $this->opcaoResposta->removeElement($opcaoResposta);
+
+        $opcaoResposta->setIdAvaliacao(null);
+    }
+
 }

@@ -1,4 +1,4 @@
-angular.module('enqueteApp', ['ngRoute'])
+angular.module('enqueteApp', ['ngRoute', 'enqueteService'])
     .config(function ($routeProvider) {
         'use strict';
 

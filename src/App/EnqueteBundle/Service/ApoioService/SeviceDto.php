@@ -1,10 +1,12 @@
 <?php
+
 namespace App\EnqueteBundle\Service\ApoioService;
 
 use \JMS\DiExtraBundle\Annotation as DI;
 
 /**
  * Class ServiceDto
+ * @package App\EnqueteBundle\Service\ApoioService
  * @DI\Service("servicedto")
  */
 class ServiceDto

@@ -2,6 +2,7 @@ angular.module('enqueteApp').controller('AdminCreateController', function ($scop
     'use strict';
 
     $scope.inputCounter = 0;
+    $scope.enquete = {};
     $scope.itens = [];
 
     /**
@@ -22,7 +23,14 @@ angular.module('enqueteApp').controller('AdminCreateController', function ($scop
     $scope.submeter = function () {
         if ($scope.formulario.$valid) {
 
-            console.log('dffd');
+            cadastroDeEnquete.cadastrar($scope.enquete)
+                .then(function (dados) {
+                    $scope.mensagem = dados.mensagem;
+                    if (dados.inclusao) $scope.foto = {};
+                })
+                .catch(function (erro) {
+                    $scope.mensagem = erro.mensagem;
+                });
         }
 
     };
