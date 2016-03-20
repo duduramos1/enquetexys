@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class AdminController extends Controller
 {
+
     /**
      * Action que deve ser mapeada para visualização de registros
      *
@@ -44,6 +45,25 @@ class AdminController extends Controller
     }
 
     /**
+     * Action que busca todas as enquetes
+     *
+     * @Route("/getenqueteid")
+     * @Method({"POST"})
+     */
+    public function getEnqueteIdAction(Request $request)
+    {
+        $id = json_decode($request->getContent(), true);
+
+        $result = $this->get('admin.service')->getEnqueteId($id);
+
+        if ($result) {
+            return new JsonResponse($result);
+        }
+
+        return new Response('false');
+    }
+
+    /**
      * Action que deve ser mapeada para visualização de registros
      *
      * @Route("/create")
@@ -57,18 +77,12 @@ class AdminController extends Controller
     /**
      * Action que deve ser mapeada para visualização de registros
      *
-     * @Route("/edit/{id}")
+     * @Route("/edit/")
      * @Template
      */
-    public function editAction($id)
+    public function editAction()
     {
-        $result = $this->get('admin.service')->getEnqueteId($id);
 
-        if ($result) {
-            return new JsonResponse($result);
-        }
-
-        return new Response('false');
     }
 
     /**

@@ -14,6 +14,19 @@ angular.module('enqueteService', [])
                     ;
                 return request;
             },
+            getId: function (url, dataRequest) {
+                var request = $http({method: 'POST', url: url, data: dataRequest})
+                    .success(function (data, status, headers, config) {
+                        return data;
+                    })
+                    .error(function (data) {
+                        if (data && data.detail) {
+                            console.log(data.detail);
+                        }
+                    })
+                    ;
+                return request;
+            },
             post: function (url, dataRequest) {
                 var request = $http({method: 'POST', url: url, data: dataRequest})
                     .success(function (data, status, headers, config) {

@@ -8,16 +8,4 @@ angular.module('enqueteApp').controller('AdminIndexController', function ($scope
         .error(function (error) {
             console.log(error);
         });
-
-    $scope.dados = [
-        {
-            'nome': 'rear',
-            'tel': '24234'
-        },
-        {
-            'nome': 'sadf',
-            'tel': '24sdafasdf234'
-        }
-    ];
-
 });

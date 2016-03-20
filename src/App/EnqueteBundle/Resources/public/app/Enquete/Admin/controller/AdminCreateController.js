@@ -1,9 +1,22 @@
-angular.module('enqueteApp').controller('AdminCreateController', function ($scope, cadastroDeEnquete, $window) {
+angular.module('enqueteApp')
+    .controller('AdminCreateController', function ($scope, $window, $location, cadastroDeEnquete, api) {
         'use strict';
 
         $scope.inputCounter = 0;
         $scope.enquete = {};
         $scope.itens = [];
+        $scope.enquete.id = $location.search().id;
+
+        if ($scope.enquete.id) {
+            api.getId('/admin/getenqueteid', $scope.enquete.id)
+                .success(function (data) {
+                    $scope.itens = data.opcaoResposta;
+                    $scope.enquete = data;
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
+        }
 
         /**
          * Adiciono opções de resposta

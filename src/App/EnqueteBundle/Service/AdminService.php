@@ -85,33 +85,33 @@ class AdminService extends AbstractService
 
     }
 
-
+    /**
+     * função para resgatar enquete por id
+     *
+     * @param $id
+     * @return array|string
+     */
     public function getEnqueteId($id)
     {
-
         $em = $this->getEntityManager();
-
+//salvar alteracao
         try {
 
             $enquete = $em->getRepository('EnqueteBundle:Enquete')->find($id);
-//            echo '<pre>';\Doctrine\Common\Util\Debug::dump($enquete->getPergunta()[0]->getOpcaoResposta());die;
+
             $arr = [
                 'id' => $enquete->getId(),
-                'nomeEnquete' => $enquete->getNoEnquete(),
-                'nomePergunta' => $enquete->getPergunta()->last()->getNoPergunta()
+                'titulo' => $enquete->getNoEnquete(),
+                'pergunta' => $enquete->getPergunta()->last()->getNoPergunta()
             ];
 
             foreach ($enquete->getPergunta()->last()->getOpcaoResposta() as $list) {
-
-                array_push($arr, [$list->getNoOpcaoResposta()]);
-
+                $arr['opcaoResposta'][] = $list->getNoOpcaoResposta();
             }
-            
-echo '<pre>';\Doctrine\Common\Util\Debug::dump($arr);die;
 
-            return $enquete;
+            return $arr;
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return false;
         }
 
     }
