@@ -4,6 +4,8 @@
 <div class="row" ng-controller="AdminCreateController">
     <div class="col-sm-9 col-md-10 col-lg-10 pull-right">
 
+        {#<p ng-show="mensagem.length" class="alert alert-success">[[mensagem]]</p>#}
+
         <form class="form-horizontal" role="form" novalidate name="formulario" ng-submit="submeter()">
 
             <section class="panel panel-default" role="region">
@@ -65,7 +67,7 @@
                                 <label class="col-sm-0 control-label required">
                                     Resposta [[$index]] -
                                 </label>
-                                <input ng-model="enquete.resposta[[$index]]" id='item-[[$index]]' class='input-[[$index]]'/>
+                                <input ng-model="enquete.opcaoResposta[[$index]]" id='item-[[$index]]' class='input-[[$index]]'/>
                             </div>
 
                             {#<div class="radio radio-inline">#}

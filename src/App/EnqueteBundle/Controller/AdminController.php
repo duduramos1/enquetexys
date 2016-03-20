@@ -4,7 +4,9 @@ namespace App\EnqueteBundle\Controller;
 use \Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use \Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use \Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -25,6 +27,23 @@ class AdminController extends Controller
     }
 
     /**
+     * Action que busca todas as enquetes
+     *
+     * @Route("/getenquete")
+     * @Method({"GET"})
+     */
+    public function getEnqueteAction()
+    {
+        $result = $this->get('admin.service')->getEnquete();
+
+        if ($result) {
+            return new JsonResponse($result);
+        }
+
+        return new Response('false');
+    }
+
+    /**
      * Action que deve ser mapeada para visualização de registros
      *
      * @Route("/create")
@@ -38,16 +57,22 @@ class AdminController extends Controller
     /**
      * Action que deve ser mapeada para visualização de registros
      *
-     * @Route("/edit")
+     * @Route("/edit/{id}")
      * @Template
      */
-    public function editAction()
+    public function editAction($id)
     {
+        $result = $this->get('admin.service')->getEnqueteId($id);
 
+        if ($result) {
+            return new JsonResponse($result);
+        }
+
+        return new Response('false');
     }
 
     /**
-     * Action que deve ser mapeada para visualização de registros
+     * Action para cadastrar enquete
      *
      * @Route("/save")
      * @Method({"POST"})
@@ -56,10 +81,14 @@ class AdminController extends Controller
     {
         $enquete = json_decode($request->getContent(), true);
 
-        if(!empty($enquete)){
+        if (!empty($enquete)) {
 
             $result = $this->get('admin.service')->save($enquete);
 
+            if ($result) {
+                return new Response('true');
+            }
         }
+        return new Response('false');
     }
 }

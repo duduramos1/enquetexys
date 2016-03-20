@@ -20,7 +20,7 @@ angular.module('enqueteService', [])
                         return data;
                     })
                     .error(function (data) {
-                        console.log(data.detail);
+                        return data;
                     })
                     ;
                 return request;
@@ -31,7 +31,7 @@ angular.module('enqueteService', [])
                         return data;
                     })
                     .error(function (data) {
-                        console.log(data.detail);
+                        return data;
                     })
                     ;
                 return request;
@@ -53,7 +53,7 @@ angular.module('enqueteService', [])
     .factory("cadastroDeEnquete", function (api, $q) {
         var service = {};
         service.cadastrar = function (enquete) {
-            //return $q(function (resolve, reject) {
+            return $q(function (resolve, reject) {
 
                 //if(foto._id) {
                 //    recursoFoto.update({fotoId: foto._id}, foto, function() {
@@ -71,14 +71,19 @@ angular.module('enqueteService', [])
                 //} else {
 
                 api.post('/admin/save', enquete)
-                    .success(function (data) {
-                        console.log('success');
+                    .success(function () {
+                        resolve({
+                            mensagem: 'Enquete ' + enquete.titulo + ' foi incluida com sucesso',
+                            inclusao: true
+                        });
                     })
                     .error(function () {
-                        console.log('error');
+                        reject({
+                            mensagem: 'Não foi possível atualizar a enquete ' + foto.titulo
+                        });
                     });
                 //    }
-            //});
+            });
         };
         return service;
     });

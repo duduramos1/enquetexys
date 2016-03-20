@@ -18,13 +18,6 @@ abstract class AbstractService
     protected $entityManager;
 
     /**
-     * Objeto de transferência de dados (DTO)
-     *
-     * @var \App\EnqueteBundle\Service\ServiceDto
-     */
-    protected $dto;
-
-    /**
      * Container de Services
      */
     protected $container;
@@ -49,9 +42,8 @@ abstract class AbstractService
      *     "logger" = @DI\Inject("logger"),
      * })
      */
-    public function __construct(ServiceDto $dto, EntityManager $entityManager = null, $container = null, $logger = null)
+    public function __construct(EntityManager $entityManager = null, $container = null, $logger = null)
     {
-        $this->setDto($dto);
         $this->setEntityManager($entityManager);
         $this->container = $container;
         $this->logger = $logger;
@@ -83,30 +75,6 @@ abstract class AbstractService
         if ($this->logger && ($level == 'error' || $this->getEnv() == 'dev')) {
             $this->logger->log($level, $message, $context);
         }
-    }
-
-    /**
-     * Recebe a DTO criada pela camada que utilizar a service,
-     * podendo ser uma Controller, ou até mesmo outra Service
-     *
-     * @param ServiceDto
-     * @return AbstractService
-     */
-    public function setDto(ServiceDto $dto)
-    {
-        $this->dto = $dto;
-
-        return $this;
-    }
-
-    /**
-     * Retorna o objeto DTO recebido
-     *
-     * @return ServiceDto
-     */
-    public function getDto()
-    {
-        return $this->dto;
     }
 
     /**

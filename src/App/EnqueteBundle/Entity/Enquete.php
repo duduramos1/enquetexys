@@ -32,14 +32,19 @@ class Enquete
     /**
      * @var array
      *
-     * @ORM\OneToMany(targetEntity="App\EnqueteBundle\Entity\Pergunta", mappedBy="enquete")
+     * @ORM\OneToMany(targetEntity="App\EnqueteBundle\Entity\Pergunta", mappedBy="enquete", cascade={"persist","remove"})
      */
     private $pergunta;
+
+    public function __construct()
+    {
+        $this->pergunta = new ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,7 +67,7 @@ class Enquete
     /**
      * Get noEnquete
      *
-     * @return string 
+     * @return string
      */
     public function getNoEnquete()
     {
