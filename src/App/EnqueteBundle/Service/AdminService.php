@@ -21,7 +21,6 @@ class AdminService extends AbstractService
      */
     public function save($data)
     {
-
         $em = $this->getEntityManager();
 
         try {
@@ -38,8 +37,52 @@ class AdminService extends AbstractService
 
                 $opcaoResposta = new OpcaoResposta();
 
-                $opcaoResposta->setNoOpcaoResposta($list);
+                $opcaoResposta->setNoOpcaoResposta($list['nome']);
                 $opcaoResposta->setPergunta($pergunta);
+
+                $em->persist($opcaoResposta);
+            }
+
+            $em->persist($enquete);
+            $em->persist($pergunta);
+            $em->flush();
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+
+    }
+
+    /**
+     * função para alterar enquete
+     *
+     * @param $data
+     * @return bool
+     */
+    public function update($data)
+    {
+        $em = $this->getEntityManager();
+
+        try {
+
+            $enquete = $em->getRepository('EnqueteBundle:Enquete')->find($data['id']);
+            $pergunta = $em->getRepository('EnqueteBundle:Pergunta')->find($data['idPergunta']);
+
+            $enquete->setNoEnquete($data['titulo']);
+            $pergunta->setNoPergunta($data['pergunta']);
+
+            foreach ($data['opcaoResposta'] as $list) {
+
+                if ($list['id']) {
+                    $opcaoResposta = $em->getRepository('EnqueteBundle:OpcaoResposta')->find($list['id']);
+                } else {
+                    $opcaoResposta = new OpcaoResposta();
+
+                    $opcaoResposta->setPergunta($pergunta);
+                }
+
+                $opcaoResposta->setNoOpcaoResposta($list['nome']);
 
                 $em->persist($opcaoResposta);
             }
@@ -62,7 +105,6 @@ class AdminService extends AbstractService
      */
     public function getEnquete()
     {
-
         $em = $this->getEntityManager();
 
         try {
@@ -94,7 +136,7 @@ class AdminService extends AbstractService
     public function getEnqueteId($id)
     {
         $em = $this->getEntityManager();
-//salvar alteracao
+
         try {
 
             $enquete = $em->getRepository('EnqueteBundle:Enquete')->find($id);
@@ -102,11 +144,13 @@ class AdminService extends AbstractService
             $arr = [
                 'id' => $enquete->getId(),
                 'titulo' => $enquete->getNoEnquete(),
-                'pergunta' => $enquete->getPergunta()->last()->getNoPergunta()
+                'pergunta' => $enquete->getPergunta()->last()->getNoPergunta(),
+                'idPergunta' => $enquete->getPergunta()->last()->getId()
             ];
 
-            foreach ($enquete->getPergunta()->last()->getOpcaoResposta() as $list) {
-                $arr['opcaoResposta'][] = $list->getNoOpcaoResposta();
+            foreach ($enquete->getPergunta()->last()->getOpcaoResposta() as $key => $list) {
+                $arr['opcaoResposta'][$key]['nome'] = $list->getNoOpcaoResposta();
+                $arr['opcaoResposta'][$key]['id'] = $list->getId();
             }
 
             return $arr;

@@ -23,7 +23,7 @@ angular.module('enqueteApp')
          */
         $scope.addResposta = function () {
             $scope.inputTemplate = {
-                id: 'input-' + $scope.inputCounter
+                id: $scope.inputCounter
             };
 
             $scope.inputCounter += 1;
@@ -35,17 +35,14 @@ angular.module('enqueteApp')
          */
         $scope.submeter = function () {
             if ($scope.formulario.$valid) {
-
-                cadastroDeEnquete.cadastrar($scope.enquete)
+                cadastroDeEnquete.cadastrar($scope.enquete, $scope.itens)
                     .then(function (dados) {
                         var url = "http://" + $window.location.host + '/app_dev.php/admin/';
                         $window.location.href = url;
-
                     })
                     .catch(function (erro) {
                         $scope.mensagem = erro.mensagem;
                     });
             }
-
         };
     });

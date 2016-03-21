@@ -89,15 +89,18 @@ class AdminController extends Controller
      * Action para cadastrar enquete
      *
      * @Route("/save")
-     * @Method({"POST"})
+     * @Method({"POST","PUT"})
      */
     public function saveAction(Request $request)
     {
         $enquete = json_decode($request->getContent(), true);
 
         if (!empty($enquete)) {
-
-            $result = $this->get('admin.service')->save($enquete);
+            if (!empty($enquete['id'])) {
+                $result = $this->get('admin.service')->update($enquete);
+            } else {
+                $result = $this->get('admin.service')->save($enquete);
+            }
 
             if ($result) {
                 return new Response('true');

@@ -65,37 +65,39 @@ angular.module('enqueteService', [])
     }])
     .factory("cadastroDeEnquete", function (api, $q) {
         var service = {};
-        service.cadastrar = function (enquete) {
+        service.cadastrar = function (enquete, itens) {
             return $q(function (resolve, reject) {
 
-                //if(foto._id) {
-                //    recursoFoto.update({fotoId: foto._id}, foto, function() {
-                //        resolve({
-                //            mensagem: 'Foto ' + foto.titulo + ' atualizada com sucesso',
-                //            inclusao: false
-                //        });
-                //    }, function(erro) {
-                //        console.log(erro);
-                //        reject({
-                //            mensagem: 'Não foi possível atualizar a foto ' + foto.titulo
-                //        });
-                //    });
-                //
-                //} else {
+                if (enquete.id) {
+                    api.put('/admin/save', enquete)
+                        .success(function () {
+                            resolve({
+                                mensagem: 'Enquete ' + enquete.titulo + ' atualizada com sucesso',
+                                inclusao: true
+                            });
+                        })
+                        .error(function () {
+                            reject({
+                                mensagem: 'Não foi possível atualizar a enquete ' + enquete.titulo
+                            });
+                        });
 
-                api.post('/admin/save', enquete)
-                    .success(function () {
-                        resolve({
-                            mensagem: 'Enquete ' + enquete.titulo + ' foi incluida com sucesso',
-                            inclusao: true
+                } else {
+                    enquete.opcaoResposta = itens;
+
+                    api.post('/admin/save', enquete)
+                        .success(function () {
+                            resolve({
+                                mensagem: 'Enquete ' + enquete.titulo + ' foi incluida com sucesso',
+                                inclusao: true
+                            });
+                        })
+                        .error(function () {
+                            reject({
+                                mensagem: 'Não foi possível atualizar a enquete ' + enquete.titulo
+                            });
                         });
-                    })
-                    .error(function () {
-                        reject({
-                            mensagem: 'Não foi possível atualizar a enquete ' + foto.titulo
-                        });
-                    });
-                //    }
+                }
             });
         };
         return service;

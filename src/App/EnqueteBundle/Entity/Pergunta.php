@@ -3,6 +3,7 @@
 namespace App\EnqueteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Pergunta
@@ -44,6 +45,11 @@ class Pergunta
      * @ORM\OneToMany(targetEntity="App\EnqueteBundle\Entity\OpcaoResposta", mappedBy="pergunta")
      */
     private $opcaoResposta;
+
+    public function __construct()
+    {
+        $this->opcaoResposta = new ArrayCollection();
+    }
 
     /**
      * Get id
