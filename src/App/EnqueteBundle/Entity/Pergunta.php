@@ -42,7 +42,7 @@ class Pergunta
     /**
      * @var array
      *
-     * @ORM\OneToMany(targetEntity="App\EnqueteBundle\Entity\OpcaoResposta", mappedBy="pergunta")
+     * @ORM\OneToMany(targetEntity="App\EnqueteBundle\Entity\OpcaoResposta", mappedBy="pergunta", cascade={"persist","remove"})
      */
     private $opcaoResposta;
 

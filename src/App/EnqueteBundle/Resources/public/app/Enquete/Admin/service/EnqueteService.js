@@ -49,8 +49,8 @@ angular.module('enqueteService', [])
                     ;
                 return request;
             },
-            delete: function (url) {
-                var request = $http({method: 'DELETE', url: url})
+            delete: function (url, dataRequest) {
+                var request = $http({method: 'DELETE', url: url, data: dataRequest})
                     .success(function (data, status, headers, config) {
                         return data;
                     })

@@ -86,6 +86,23 @@ class AdminController extends Controller
     }
 
     /**
+     * Action para deletar enquete
+     *
+     * @Route("/delete")
+     * @Method({"DELETE"})
+     * @Template
+     */
+    public function deleteAction(Request $request)
+    {
+        $enqueteId = json_decode($request->getContent(), true);
+
+        if($enqueteId){
+            $result = $this->get('admin.service')->deletar($enqueteId);
+        }
+        return new JsonResponse($result);
+    }
+
+    /**
      * Action para cadastrar enquete
      *
      * @Route("/save")

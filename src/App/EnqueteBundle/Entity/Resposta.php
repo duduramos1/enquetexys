@@ -59,7 +59,7 @@ class Resposta
     /**
      * Get opcaoResposta
      *
-     * @return \App\EnqueteBundle\Entity\OpcaoResposta 
+     * @return \App\EnqueteBundle\Entity\OpcaoResposta
      */
     public function getOpcaoResposta()
     {

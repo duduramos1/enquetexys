@@ -37,8 +37,8 @@ angular.module('enqueteApp')
             if ($scope.formulario.$valid) {
                 cadastroDeEnquete.cadastrar($scope.enquete, $scope.itens)
                     .then(function (dados) {
-                        var url = "http://" + $window.location.host + '/app_dev.php/admin/';
-                        $window.location.href = url;
+                        //var url = "http://" + $window.location.host + '/app_dev.php/admin/';
+                        //$window.location.href = url;
                     })
                     .catch(function (erro) {
                         $scope.mensagem = erro.mensagem;

@@ -40,7 +40,7 @@ class AdminService extends AbstractService
                 $opcaoResposta->setNoOpcaoResposta($list['nome']);
                 $opcaoResposta->setPergunta($pergunta);
 
-                $em->persist($opcaoResposta);
+                $pergunta->addOpcaoResposta($opcaoResposta);
             }
 
             $em->persist($enquete);
@@ -84,11 +84,35 @@ class AdminService extends AbstractService
 
                 $opcaoResposta->setNoOpcaoResposta($list['nome']);
 
-                $em->persist($opcaoResposta);
+                $pergunta->addOpcaoResposta($opcaoResposta);
             }
 
             $em->persist($enquete);
             $em->persist($pergunta);
+            $em->flush();
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+
+    }
+
+    /**
+     * função para deletar enquete
+     *
+     * @param $data
+     * @return bool
+     */
+    public function deletar($enqueteId)
+    {
+        $em = $this->getEntityManager();
+
+        try {
+
+            $enquete = $em->getRepository('EnqueteBundle:Enquete')->find($enqueteId);
+
+            $em->remove($enquete);
             $em->flush();
 
             return true;
