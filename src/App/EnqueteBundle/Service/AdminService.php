@@ -163,29 +163,30 @@ class AdminService extends AbstractService
 
         try {
 
-            $enquete = $em->getRepository('EnqueteBundle:Enquete')->find($id);
+        $enquete = $em->getRepository('EnqueteBundle:Enquete')->find($id);
 
-            $arr = [
-                'id' => $enquete->getId(),
-                'titulo' => $enquete->getNoEnquete(),
-                'pergunta' => $enquete->getPergunta()->last()->getNoPergunta(),
-                'idPergunta' => $enquete->getPergunta()->last()->getId()
-            ];
+        $arr = [
+            'id' => $enquete->getId(),
+            'titulo' => $enquete->getNoEnquete(),
+            'pergunta' => $enquete->getPergunta()->last()->getNoPergunta(),
+            'idPergunta' => $enquete->getPergunta()->last()->getId()
+        ];
 
-            $res = [];
-            foreach ($enquete->getPergunta()->last()->getOpcaoResposta() as $key => $list) {
-                $arr['opcaoResposta'][$key]['nome'] = $list->getNoOpcaoResposta();
-                $arr['opcaoResposta'][$key]['id'] = $list->getId();
+        $res = [];
+        foreach ($enquete->getPergunta()->last()->getOpcaoResposta() as $key => $list) {
+            $arr['opcaoResposta'][$key]['nome'] = $list->getNoOpcaoResposta();
+            $arr['opcaoResposta'][$key]['id'] = $list->getId();
 
-                $resposta = $em->getRepository("EnqueteBundle:Resposta")->findBy([
-                    'opcaoResposta' => $list->getId()
-                ]);
+            $resposta = $em->getRepository("EnqueteBundle:Resposta")->findBy([
+                'opcaoResposta' => $list->getId()
+            ]);
 
-                $res[$list->getNoOpcaoResposta()] = $resposta;
+            $res[$list->getNoOpcaoResposta()] = $resposta;
 
-            }
+        }
 
-            $arr['porcentagem'] = $this->calcularPorcentagem($res);
+        $arr['porcentagem'] = $this->calcularPorcentagem($res);
+
 
             return $arr;
         } catch (\Exception $e) {
@@ -204,16 +205,19 @@ class AdminService extends AbstractService
     {
         $calc = [];
         if (!empty($res)) {
+
             $count = 0;
             $e = [];
             foreach ($res as $keyResp => $resp) {
-
-                $count = $count + count($resp);
-                $e[$keyResp] = count($resp);
-
+                if (!empty($resp)) {
+                    $count = $count + count($resp);
+                    $e[$keyResp] = count($resp);
+                }
             }
-            foreach ($e as $keyItem => $item) {
-                $calc[$keyItem] = ($item * 100) / $count;
+            if (!empty($e)) {
+                foreach ($e as $keyItem => $item) {
+                    $calc[$keyItem] = ($item * 100) / $count;
+                }
             }
         }
 

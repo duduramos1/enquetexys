@@ -17,17 +17,19 @@ angular.module('enqueteApp').controller('EnqueteIndexController', function ($sco
         api.post('/enquete/saveresposta', $scope.itemResposta)
             .success(function (dados) {
                 $scope.mensagem = {
-                    'texto':'Operação realizada com sucesso!',
-                    'conf':'alert alert-success'
+                    'texto': 'Operação realizada com sucesso!',
+                    'conf': 'alert alert-success'
                 };
+
             })
             .error(function (error) {
                 $scope.mensagem = {
-                    'text':'Operação realizada com sucesso!',
-                    'conf':'alert alert-danger'
+                    'text': 'Operação realizada com sucesso!',
+                    'conf': 'alert alert-danger'
                 };
                 console.log(error);
-            })
+            });
+        $scope.itemResposta = {};
     }
 
 });
