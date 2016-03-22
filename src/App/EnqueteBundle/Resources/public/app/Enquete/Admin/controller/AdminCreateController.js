@@ -7,6 +7,10 @@ angular.module('enqueteApp')
         $scope.itens = [];
         $scope.enquete.id = $location.search().id;
 
+        /**
+         * verifica se existe id para recuperar os dados
+         * e realizar o preenchimento dos campos para alteração
+         */
         if ($scope.enquete.id) {
             api.getId('/admin/getenqueteid', $scope.enquete.id)
                 .success(function (data) {
@@ -37,8 +41,8 @@ angular.module('enqueteApp')
             if ($scope.formulario.$valid) {
                 cadastroDeEnquete.cadastrar($scope.enquete, $scope.itens)
                     .then(function (dados) {
-                        //var url = "http://" + $window.location.host + '/app_dev.php/admin/';
-                        //$window.location.href = url;
+                        var url = "http://" + $window.location.host + '/app_dev.php/admin/';
+                        $window.location.href = url;
                     })
                     .catch(function (erro) {
                         $scope.mensagem = erro.mensagem;

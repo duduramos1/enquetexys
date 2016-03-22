@@ -32,7 +32,6 @@ class Resposta
     private $opcaoResposta;
 
 
-
     /**
      * Get id
      *

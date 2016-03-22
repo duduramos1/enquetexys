@@ -172,15 +172,51 @@ class AdminService extends AbstractService
                 'idPergunta' => $enquete->getPergunta()->last()->getId()
             ];
 
+            $res = [];
             foreach ($enquete->getPergunta()->last()->getOpcaoResposta() as $key => $list) {
                 $arr['opcaoResposta'][$key]['nome'] = $list->getNoOpcaoResposta();
                 $arr['opcaoResposta'][$key]['id'] = $list->getId();
+
+                $resposta = $em->getRepository("EnqueteBundle:Resposta")->findBy([
+                    'opcaoResposta' => $list->getId()
+                ]);
+
+                $res[$list->getNoOpcaoResposta()] = $resposta;
+
             }
+
+            $arr['porcentagem'] = $this->calcularPorcentagem($res);
 
             return $arr;
         } catch (\Exception $e) {
             return false;
         }
 
+    }
+
+    /**
+     * logica para calcular a porcentagem das respostas
+     *
+     * @param $res
+     * @return array
+     */
+    public function calcularPorcentagem($res)
+    {
+        $calc = [];
+        if (!empty($res)) {
+            $count = 0;
+            $e = [];
+            foreach ($res as $keyResp => $resp) {
+
+                $count = $count + count($resp);
+                $e[$keyResp] = count($resp);
+
+            }
+            foreach ($e as $keyItem => $item) {
+                $calc[$keyItem] = ($item * 100) / $count;
+            }
+        }
+
+        return $calc;
     }
 }

@@ -38,6 +38,12 @@ class OpcaoResposta
      */
     private $pergunta;
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="App\EnqueteBundle\Entity\Resposta", mappedBy="opcaoResposta")
+     */
+    private $resposta;
 
 
     /**
@@ -94,5 +100,28 @@ class OpcaoResposta
     public function getPergunta()
     {
         return $this->pergunta;
+    }
+
+    /**
+     * Set resposta
+     *
+     * @param \App\EnqueteBundle\Entity\Resposta $resposta
+     * @return OpcaoResposta
+     */
+    public function setResposta(\App\EnqueteBundle\Entity\Resposta $resposta = null)
+    {
+        $this->resposta = $resposta;
+
+        return $this;
+    }
+
+    /**
+     * Get resposta
+     *
+     * @return \App\EnqueteBundle\Entity\Resposta
+     */
+    public function getResposta()
+    {
+        return $this->resposta;
     }
 }

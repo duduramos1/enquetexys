@@ -1,6 +1,11 @@
 angular.module('enqueteApp').controller('AdminIndexController', function ($scope, api) {
     'use strict';
 
+    $scope.porcentagem = {};
+
+    /**
+     * resgata os dados do banco e lista na grid
+     */
     api.get('/admin/getenquete')
         .success(function (data) {
             $scope.dados = data;
@@ -26,6 +31,20 @@ angular.module('enqueteApp').controller('AdminIndexController', function ($scope
                     console.log(error);
                 });
         }
-    }
+    };
+
+    $scope.relatorio = function (item) {
+
+        if (item) {
+            api.getId('/admin/getenqueteid', item.id)
+                .success(function (data) {
+                    $scope.porcentagem = data.porcentagem;
+                    $scope.tituloEnquete = item.nomeEnquete;
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
+        }
+    };
 
 });
