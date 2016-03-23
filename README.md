@@ -1,6 +1,6 @@
 # Enquete
 
-Código fonte do sistema Enquete.
+Código fonte da Enquete.
 
 ### Instalação
 
@@ -27,5 +27,5 @@ bower install
 Acesse a raiz do projeto e execute o servidor na aplicação:
 
 ```bash
-php app\console server:run
+php app/console server:run
 ```
