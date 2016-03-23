@@ -28,7 +28,7 @@
                                           class="form-control alert-danger">
                                         Título obrigatório
                                     </span>
-                                    <span ng-show="formulario.$submitted && formulario.enquete.$error.maxlength"
+                                    <span ng-show="formulario.enquete.$error.maxlength"
                                           class="form-control alert-danger">
                                         No máximo 50 caracteres!
                                     </span>
@@ -49,7 +49,7 @@
                                           class="form-control alert-danger">
                                         Título obrigatório
                                     </span>
-                                    <span ng-show="formulario.$submitted && formulario.pergunta.$error.maxlength"
+                                    <span ng-show="formulario.pergunta.$error.maxlength"
                                           class="form-control alert-danger">
                                         No máximo 100 caracteres!
                                     </span>
@@ -68,7 +68,7 @@
                                         Resposta [[$index]] -
                                     </label>
 
-                                    <input type="text" ng-model="item.nome"/>
+                                    <input type="text" required ng-model="item.nome"/>
 
                                     <input type="hidden" ng-model="item.id"/>
 
