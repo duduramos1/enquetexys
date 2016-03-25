@@ -1,0 +1,31 @@
+{
+  "name": "enquetexys",
+  "config": {
+    "port": "3000"
+  },
+  "version": "1.0.1",
+  "description": "Sistema enquete",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/duduramos1/enquetexys.git"
+  },
+  "author": [
+    {
+      "name": "Eduardo Ramos",
+      "email": "duduramos1@gmail.com"
+    }
+  ],
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/duduramos1/enquetexys/issues"
+  },
+  "dependencies": {
+    "express": "4.13.*",
+    "socket.io": "~1.4.5"
+  }
+}

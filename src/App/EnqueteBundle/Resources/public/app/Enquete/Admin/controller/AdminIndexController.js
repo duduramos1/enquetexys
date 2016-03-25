@@ -26,6 +26,7 @@ angular.module('enqueteApp').controller('AdminIndexController', function ($scope
                 .success(function (data) {
                     var indiceItem = $scope.dados.indexOf(item);
                     $scope.dados.splice(indiceItem, 1);
+                    socket.emit("deletarEnquete");
                 })
                 .error(function (error) {
                     console.log(error);
@@ -34,17 +35,20 @@ angular.module('enqueteApp').controller('AdminIndexController', function ($scope
     };
 
     $scope.relatorio = function (item) {
-
         if (item) {
-            api.getId('/admin/getenqueteid', item.id)
-                .success(function (data) {
-                    $scope.porcentagem = data.porcentagem;
-                    $scope.tituloEnquete = item.nomeEnquete;
-                })
-                .error(function (error) {
-                    console.log(error);
-                });
+            $scope.itemEnquete = item;
+            socket.emit("getEnquete")
         }
     };
 
+    socket.on("relatorioEnquete", function () {
+        api.getId('/admin/getenqueteid', $scope.itemEnquete.id)
+            .success(function (data) {
+                $scope.porcentagem = data.porcentagem;
+                $scope.tituloEnquete = $scope.itemEnquete.nomeEnquete;
+            })
+            .error(function (error) {
+                console.log(error);
+            });
+    });
 });

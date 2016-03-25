@@ -22,10 +22,17 @@ Instale as dependências Bower da aplicação através do [bower](http://bower.i
 bower install
 ```
 
+Instale as dependências NodeJs da aplicação através do [npm](https://www.npmjs.com/):
+
+```bash
+npm install
+```
+
 ### Servidor
 
 Acesse a raiz do projeto e execute o servidor na aplicação:
 
 ```bash
 php app/console server:run
+npm start
 ```
