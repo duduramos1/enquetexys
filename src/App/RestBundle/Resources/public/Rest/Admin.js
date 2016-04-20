@@ -1,9 +1,9 @@
 angular.module('enqueteApp', ['ngRoute', 'ngResource', 'enqueteService'])
     .config(function ($routeProvider, $interpolateProvider) {
+        "use strict";
 
         $routeProvider.when('/rest',{
-            assets: ["AppRest"],
-            templateUrl: 'view/index.html',
+            templateUrl: '/bundles/rest/Rest/view/index.html',
             controller: 'IndexController'
         });
 

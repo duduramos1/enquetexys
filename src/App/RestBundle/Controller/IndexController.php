@@ -1,26 +1,21 @@
 <?php
 namespace App\RestBundle\Controller;
 
-use \Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use \Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use \Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
- * Download de Arquivos do servidor
- * @Route("/")
+ * Rest index
+ *
+ * @Rest\Prefix("api/app/rest/index")
+ * @Rest\NamePrefix("api_app_rest_index_")
  */
-class IndexController extends Controller
+class IndexController extends FOSRestController
 {
 
     /**
      * Action que deve ser mapeada para visualização de registros
      *
-     * @Route("")
-     * @Template
      */
     public function indexAction()
     {
