@@ -37,6 +37,7 @@
     <div class="row">
         {% include ':partial:menuFixo.html.twig' %}
         {% block body %}{% endblock %}
+        <ng-view />
     </div>
 </div>
 
@@ -53,7 +54,7 @@
 <script src="{{ asset('assets/vendor/angular-resource/angular-resource.min.js') }}"></script>
 <script src="{{ asset('bundles/enquete/app/Enquete/Admin/Admin.js') }}"></script>
 <script src="{{ asset('bundles/enquete/app/Enquete/Admin/controller/AdminCreateController.js') }}"></script>
-<script src="{{ asset('bundles/enquete/app/Enquete/Admin/controller/AdminIndexController.js') }}"></script>
+<script src="{{ asset('bundles/enquete/app/Enquete/Admin/controller/IndexController.js') }}"></script>
 <script src="{{ asset('bundles/enquete/app/Enquete/Admin/controller/EnqueteIndexController.js') }}"></script>
 <script src="{{ asset('bundles/enquete/app/Enquete/Admin/service/EnqueteService.js') }}"></script>
 

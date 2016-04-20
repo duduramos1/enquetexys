@@ -2,3 +2,6 @@ app:
     resource: "@EnqueteBundle/Controller/"
     type:     annotation
     prefix:   /
+
+AppRestBundle:
+    resource: "@RestBundle/Resources/config/routing.yml"

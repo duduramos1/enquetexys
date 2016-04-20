@@ -1,0 +1,5 @@
+extend:
+  AppRest:
+    scripts:
+     - bundles/rest/*.js
+

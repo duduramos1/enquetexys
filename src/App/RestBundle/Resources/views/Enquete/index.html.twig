@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Enquetes</h1>
+    </div>
+
+    <div class="row" ng-controller="EnqueteIndexController">
+
+        <div class="col-sm-9 col-md-10 col-lg-10 pull-right">
+            <p ng-show="mensagem.texto.length" class="[[mensagem.conf]]">
+                [[mensagem.texto]]
+            </p>
+
+            <form class="form-horizontal" role="form" novalidate name="formulario" ng-submit="submeter()">
+
+                <input type="hidden" ng-model="enquete.id">
+                <input type="hidden" ng-model="enquete.idPergunta">
+
+                <section class="panel panel-default" role="region">
+                    <header class="panel-heading">
+                        <h4>Responder Enquete</h4>
+                    </header>
+                    <article class="panel-body" ng-repeat="enqueteItens in enquete">
+                        <div class="col-sm-12 jumbotron text-center">
+                            <h3>[[enqueteItens.noEnquete]]</h3>
+                        </div>
+
+                        <div ng-repeat="pergunta in enqueteItens.pergunta">
+                            <h4>[[pergunta.noPergunta]]</h4>
+
+                            <div ng-repeat="opResposta in pergunta.opcaoResposta" class="form-group col-sm-12">
+                                <label class="col-sm-3 control-label">[[opResposta.noOpcaoResposta]]</label>
+
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input type="radio" class="form-control"
+                                               ng-model="itemResposta[pergunta.id].opResposta" required
+                                               ng-value="[[opResposta.id]]"
+                                               name="[[pergunta.id]]">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </article>
+                    <footer class="panel-footer clearfix">
+                        <div class="pull-right">
+                            <a class="btn btn-s-md btn-default" ng-click="responder()">
+                                <i class="fa fa-save"></i> Responder
+                            </a>
+                        </div>
+                    </footer>
+                </section>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
