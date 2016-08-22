@@ -1,4 +1,12 @@
-app:
-    resource: "@EnqueteBundle/Controller/"
+app_start:
+    resource: "@StartBundle/Controller/"
     type:     annotation
     prefix:   /
+
+app_contato:
+    resource: "@ContatoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app_contato_rest:
+    resource: "@ContatoBundle/Resources/config/routing.yml"

@@ -1,0 +1,3 @@
+contato:
+    type: rest
+    resource: "@ContatoBundle/Controller/ContatoController.php"
