@@ -13,4 +13,24 @@ use FOS\RestBundle\Controller\Annotations as Rest;
  */
 class ContatoController extends FOSRestController
 {
+
+    public function getContatoAction()
+    {
+
+    }
+
+    public function postContatoAction()
+    {
+
+    }
+
+    public function putContatoAction()
+    {
+
+    }
+
+    public function deleteContatoAction()
+    {
+
+    }
 }

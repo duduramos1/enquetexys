@@ -45,7 +45,7 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
+        driver:   "%database_drive%"
         host:     "%database_host%"
         port:     "%database_port%"
         dbname:   "%database_name%"
@@ -74,5 +74,4 @@ swiftmailer:
 
 jms_di_extra:
     locations:
-        all_bundles: false
-        bundles: [EnqueteBundle]
+        all_bundles: true
