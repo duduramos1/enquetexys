@@ -1,14 +1,5 @@
 <?php
 
-$key = isset($argv[1]) ? $argv[1] : null;
-
-// se o valor de $k for igual a minha "chave de proteção"
-if ($key == 'a2cfe19e8065517b655f1360ff4625de') {
-//executo os comandos de Deploy
-
-// Este cabeçalho informa ao navegador que
-// isso é um arquivo de texto e quebra
-// as linhas sem eu usar <br>
     if (php_sapi_name() != "cli") {
         header('Content-Type:text/plain');
     }
@@ -36,7 +27,5 @@ if ($key == 'a2cfe19e8065517b655f1360ff4625de') {
     echo passthru('app/composer install');
     echo 'OK' . PHP_EOL;
     echo '=======' . PHP_EOL;
-
-}
 
 echo 'Deploy finalizado!' . PHP_EOL;
