@@ -1,16 +1,18 @@
 <nav class="nav-primary hidden-xs" role="navigation">
     <div class="col-lg-2 col-sm-3 col-md-2 sidebar">
+        {% raw %}
         <ul class="nav nav-sidebar">
             <li>
-                <a class="auto" href="{{ path('app_enquete_enquete_index') }}">
-                    Enquete
+                <a class="auto" ng-href="#/rest">
+                    Início
                 </a>
             </li>
             <li>
-                <a class="auto" href="{{ path('app_enquete_admin_index') }}">
-                    Admin
+                <a class="auto" ng-href="#/contato">
+                    Contato
                 </a>
             </li>
         </ul>
+        {% endraw %}
     </div>
 </nav>

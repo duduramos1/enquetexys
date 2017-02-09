@@ -1,0 +1,3 @@
+app_contato:
+    type: rest
+    resource:  "@ContatoBundle/Controller/IndexController.php"

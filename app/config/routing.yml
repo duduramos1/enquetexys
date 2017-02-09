@@ -1,7 +1,10 @@
 app:
-    resource: "@EnqueteBundle/Controller/"
+    resource: "@InitBundle/Controller/"
     type:     annotation
     prefix:   /
 
 AppRestBundle:
     resource: "@RestBundle/Resources/config/routing.yml"
+
+AppContatoBundle:
+    resource: "@ContatoBundle/Resources/config/routing.yml"

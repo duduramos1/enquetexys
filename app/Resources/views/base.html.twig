@@ -36,8 +36,9 @@
 <div class="container-fluid">
     <div class="row">
         {% include ':partial:menuFixo.html.twig' %}
-        {% block body %}{% endblock %}
-        <ng-view />
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ng-view/>
+        </div>
     </div>
 </div>
 
@@ -52,15 +53,14 @@
 <script src="{{ asset('assets/vendor/angular/angular.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/angular-route/angular-route.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/angular-resource/angular-resource.min.js') }}"></script>
-<script src="{{ asset('bundles/enquete/app/Enquete/Admin/Admin.js') }}"></script>
+<script src="{{ asset('bundles/contato/Admin.js') }}"></script>
 <script src="{{ asset('bundles/rest/Rest/Admin.js') }}"></script>
 <script src="{{ asset('bundles/rest/Rest/controller/IndexController.js') }}"></script>
-<script src="{{ asset('bundles/enquete/app/Enquete/Admin/controller/AdminCreateController.js') }}"></script>
-<script src="{{ asset('bundles/enquete/app/Enquete/Admin/controller/AdminIndexController.js') }}"></script>
-<script src="{{ asset('bundles/enquete/app/Enquete/Admin/controller/EnqueteIndexController.js') }}"></script>
-<script src="{{ asset('bundles/enquete/app/Enquete/Admin/service/EnqueteService.js') }}"></script>
+<script src="{{ asset('bundles/contato/controller/IndexController.js') }}"></script>
+<script src="{{ asset('bundles/contato/service/EnqueteService.js') }}"></script>
 
 <script>
+    var root_path = "{{ asset('', null, true) }}";
     socket = io("http://localhost:3000");
 </script>
 

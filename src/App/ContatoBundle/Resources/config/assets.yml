@@ -1,0 +1,5 @@
+extend:
+  AppContato:
+    scripts:
+     - bundles/contato/*.js
+
