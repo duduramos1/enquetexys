@@ -2,7 +2,7 @@
 namespace App\EnqueteBundle\Service\ApoioService;
 
 use \Doctrine\ORM\EntityManager;
-use \JMS\DiExtraBundle\Annotation as DI;
+use JMS\DiExtraBundle\Annotation as DI;
 
 /**
  * Class AbstractService
